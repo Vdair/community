@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * 完成提交问题 控制层
+ */
 @Controller
 public class PublicController {
     @Autowired
@@ -48,16 +51,17 @@ public class PublicController {
 
         User user=null;
         Cookie[] cookies = request.getCookies();
-        for(Cookie cookie:cookies){
-            if(cookie.getName().equals("token")){
-                String token = cookie.getValue();
-                user= userMapper.findByToken(token);
-                if(user!=null){
-                    request.getSession().setAttribute("user",user);
+        if (cookies!=null&&cookies.length!=0)
+            for(Cookie cookie:cookies){
+                if(cookie.getName().equals("token")){
+                    String token = cookie.getValue();
+                    user= userMapper.findByToken(token);
+                    if(user!=null){
+                        request.getSession().setAttribute("user",user);
+                    }
+                    break;
                 }
-                break;
             }
-        }
         if (user==null){
             model.addAttribute("error","用户未登录");
             return "publish";

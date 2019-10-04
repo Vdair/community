@@ -8,6 +8,9 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
+/**
+ * github信息
+ */
 @Component
 public class GitHubProvider {
     public String getAccessToken(AccessTokenDTO accessTokenDTO){
