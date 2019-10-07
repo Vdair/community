@@ -20,5 +20,9 @@ body {
 }
 
 .section  {
-    margin-top: 18px;
+     margin-top: 18px;
+ }
+.community-menu {
+    color: #999999;
+    font-size: 13px;
 }
